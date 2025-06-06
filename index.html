@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fontanelle Valdichiana</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #007BFF;
+      color: white;
+    }
+    .hero {
+      background-image: url('valdichiana_hero.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 200px;
+    }
+    .container {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .button {
+      display: inline-block;
+      padding: 1rem;
+      font-size: 1rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 90%;
+      max-width: 400px;
+    }
+    .comuni-page {
+      display: none;
+      padding: 1.5rem;
+      background-image: url('sfondo_comuni.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .comune {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      margin: 0.5rem auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 400px;
+      cursor: pointer;
+    }
+    .fontanelle-section {
+      display: none;
+      padding: 1.5rem;
+      background-image: url('sfondo_comuni.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .fontanella {
+      background: #fff;
+      padding: 1rem;
+      margin: 0.5rem auto;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    .fontanella img {
+      display: block;
+      margin: 0 auto 1rem;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fontanelle della Val di Chiana</h1>
+  </header>
+  <div class="hero"></div>
+
+  <div class="container">
+    <p>Benvenuto nel censimento delle fontanelle pubbliche della Val di Chiana. Premi il pulsante qui sotto per esplorare i comuni.</p>
+    <button class="button" onclick="showComuni()">Fontanelle Valdichiana</button>
+  </div>
+
+  <div class="comuni-page" id="comuniPage">
+    <h2 style="text-align:center; background-color: rgba(255,255,255,0.8); padding: 1rem; border-radius: 10px;">Comuni censiti</h2>
+    <div class="comune" onclick="showFontanelle('Abbadia')">Abbadia San Salvatore</div>
+    <div class="comune" onclick="showFontanelle('Castiglione')">Castiglione d'Orcia</div>
+    <div class="comune">Cetona</div>
+    <div class="comune">Chianciano Terme</div>
+    <div class="comune">Chiusi</div>
+    <div class="comune">Montepulciano</div>
+    <div class="comune">Piancastagnaio</div>
+    <div class="comune">Pienza</div>
+    <div class="comune">Radicofani</div>
+    <div class="comune">San Casciano dei Bagni</div>
+    <div class="comune">San Quirico d'Orcia</div>
+    <div class="comune">Sarteano</div>
+    <div class="comune">Sinalunga</div>
+    <div class="comune">Torrita</div>
+    <div class="comune">Trequanda</div>
+  </div>
+
+  <div class="fontanelle-section" id="fontanelleList"></div>
+
+  <script>
+    function showComuni() {
+      document.querySelector('.container').style.display = 'none';
+      document.getElementById('comuniPage').style.display = 'block';
+      document.getElementById('fontanelleList').style.display = 'none';
+    }
+
+    function showFontanelle(comune) {
+      const fontanelleDB = {
+        Abbadia: [
+          { nome: "F.P. castagnatucci", link: "https://maps.app.goo.gl/9rE1D25e9Fb9oc46A" },
+          { nome: "F.P. piscinello", link: "https://maps.app.goo.gl/fGYMXGLCRypUftRaA" },
+          { nome: "F.P. Alvineta", link: "https://maps.app.goo.gl/UGcTxeFPwpnBbGtZ8" },
+          { nome: "F.P. piazza della repubblica", link: "https://maps.app.goo.gl/er51iAjqbSkBuyHg6" },
+          { nome: "F.P. F.lli Cervi", link: "https://maps.app.goo.gl/VU4yjq9x14z3GPTy9" }
+        ],
+        Castiglione: [
+          { nome: "F.P. Bagni San Filippo", link: "https://maps.app.goo.gl/LZsgwhfcXkpGnVvTA" },
+          { nome: "F.P. Vivo d’Orcia", link: "https://maps.app.goo.gl/w9cWDKhsxYuCfvRc6" },
+          { nome: "F.P. Gallina", link: "https://maps.app.goo.gl/HM8ugkMouAHVb89c8" },
+          { nome: "F.P. Belvedere", link: "https://maps.app.goo.gl/jHGhw1x9fzZuC1ag8" },
+          { nome: "F.P. Campiglia d’Orcia", link: "https://maps.app.goo.gl/nNVYUC5umnJSvUHJ9" },
+          { nome: "F.P. Castiglione d’Orcia", link: "https://maps.app.goo.gl/X3kMERDoXwg5Aehx7" },
+          { nome: "F.P. Pietrineri", link: "https://maps.app.goo.gl/hAQbjyMZZriKa8829" },
+          { nome: "F.P. Rocca d’Orcia", link: "https://maps.app.goo.gl/KsoanrMgeAPjtwZN8" },
+          { nome: "Stazione Amiata", link: "https://maps.app.goo.gl/KLMjzbhY1412Ad3u8" }
+        ]
+      };
+
+      const list = fontanelleDB[comune] || [];
+      const container = document.getElementById('fontanelleList');
+      let html = `
+        <img src="fontanella.png" alt="Fontanella" style="width:100px; display:block; margin:1rem auto;">
+        <h2 style="text-align:center; padding: 1rem;">Fontanelle in ${comune}</h2>`;
+
+      list.forEach(el => {
+        html += `<div class='fontanella'><a href="${el.link}" target="_blank">${el.nome}</a></div>`;
+      });
+      html += `<div style='text-align:center; margin-top:2rem;'><button class='button' onclick='showComuni()'>Torna ai comuni</button></div>`;
+
+      container.innerHTML = html;
+      document.getElementById('comuniPage').style.display = 'none';
+      container.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
